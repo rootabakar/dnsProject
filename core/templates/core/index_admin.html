@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+	ADMIN | ACCEUIL
+{% endblock %}
+
+{% block main %}
+     <div class="container mt-5">
+        <h2>ADMIN CENTER</h2>
+         {% if err %}
+            <div class="alert alert-danger">{{ err }}</div>
+         {% endif %}
+         {% if done %}
+            <div class="alert alert-success">{{ done }}</div>
+         {% endif %}
+         {% if domaines %}
+             <table class="table">
+                 <thead>
+                 <tr>
+                     <th>ID</th>
+                     <th>Nom de domaine</th>
+                     <th>Raison</th>
+                     <th>Actions</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 {% for domaine in domaines %}
+                     <tr>
+                         <td>{{ forloop.counter }}</td>
+                         <td>{{ domaine.uri }}</td>
+                         <td>{{ domaine.raison }}</td>
+                         <td>
+                             <a href="{% url 'black_lister_un_domaine' domaine.uri domaine.raison domaine.slug %}" class="btn btn-danger">Blacklister</a>
+                             <a href="{% url 'approuve_un_domaine' domaine.uri domaine.raison domaine.slug %}" class="btn btn-success">Approuver</a>
+                         </td>
+                     </tr>
+                 {% endfor %}
+                 </tbody>
+             </table>
+         {% else %}
+             <span>Il n'y a pas des domaines enregistres</span>
+         {% endif %}
+     </div>
+{% endblock %}

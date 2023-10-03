@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block titre %} ADMIN | MODIFICATION UTILISATEUR {% endblock %}
+
+
+{% block main %}
+	<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                {% if done %}
+                	<div class="alert alert-success">{{ done }}</div>
+                {% endif %}
+                {% if err %}
+                    <div class="alert alert-danger">{{ err }}</div>
+                {% endif %}
+                <div class="card">
+                    <div class="card-header">
+                        Creation d'utilisateur
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom</label>
+                                <input value="{{ user.last_name }}" type="text" name="nom" class="form-control" id="nom" placeholder="Votre nom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="prenom" class="form-label">Prénom</label>
+                                <input value="{{ user.first_name }}" type="text" name="prenom" class="form-control" id="prenom" placeholder="Votre prénom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input value="{{ user.email }}" type="email" name="email" class="form-control" id="email" placeholder="Votre adresse email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

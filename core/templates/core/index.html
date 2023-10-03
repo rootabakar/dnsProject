@@ -1,0 +1,28 @@
+{% extends 'base_simple.html'%}
+{% load crispy_forms_filters %}
+{% load crispy_forms_field %}
+
+
+{% block titre %}
+	ACCEUIL
+{% endblock %}
+
+{% block main %}
+	<h2 class="text-center">BIENVENU DANS NOTRE SITE DE RECENCEMENT DES DOMAINES FRODULEUX</h2>
+    <div class="container d-flex justify-content-center align-items-center ">
+        <p class="text-center fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi consequuntur ducimus eligendi et eum exercitationem ipsum, nisi placeat porro quaerat quia repellendus, rerum sint temporibus velit, vitae voluptate voluptatem!</p>
+    </div>
+    <div class="w-50 mt-4 container">
+        {% if err %}
+            <div class="alert alert-danger">{{ err }}</div>
+        {% endif %}
+        {% if done %}
+            <div class="alert alert-success">{{ done }}</div>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button class="btn btn-primary mt-2 mb-2" type="submit">Soumettre</button>
+        </form>
+    </div>
+{% endblock %}

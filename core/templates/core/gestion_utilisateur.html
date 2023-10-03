@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block titre %}
+	ADMIN | GESTION DES UTILISATEURS
+{% endblock %}
+
+
+{% block main %}
+     <div class="container p-4">
+         {% if done_sup %}
+             <div class="alert alert-success mt2 -mb-2"><span>{{ done_sup }}</span></div>
+         {% endif %}
+         <a href="{% url 'creation' %}" class="btn btn-primary mt-3">Creer un utilisateur</a>
+
+         <table class="table">
+         <thead>
+             <tr>
+                 <th>ID</th>
+                 <th>Nom</th>
+                 <th>Prenom</th>
+                 <th>Email</th>
+                 <th>Action</th>
+             </tr>
+         </thead>
+         <tbody>
+             {% for user in users %}
+                 <tr>
+                     <td>{{ forloop.counter }}</td>
+                     <td>{{ user.last_name }}</td>
+                     <td>{{ user.first_name }}</td>
+                     <td>{{ user.email }}</td>
+                     <td>
+                         <a onclick="return confirm('Etes vous sur de vouloir supprimer cet utilisateur')" href="{% url 'supprimer_utilisateur' user.id %}" class="btn btn-danger">Supprimer</a>
+                         <a href="{% url 'modification_utilisateur' user.id %}" class="btn btn-success">Modifier</a>
+                     </td>
+                 </tr>
+             {% endfor %}
+             </tbody>
+        </table>
+     </div>
+
+{% endblock %}

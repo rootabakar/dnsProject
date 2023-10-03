@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+	ADMIN | APPROUVE
+{% endblock %}
+
+{% block main %}
+    <div class="container p-4">
+        <h2>LA LISTE DES DOMAINES APPROUVES</h2>
+        {% if domaines %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom de domaine</th>
+                    <th>Raison</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for domaine in domaines %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ domaine.uri }}</td>
+                        <td>{{ domaine.raison }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <span>Il n'y a pas des domaines enregistres</span>
+        {% endif %}
+    </div>
+{% endblock %}
