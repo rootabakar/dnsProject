@@ -16,7 +16,7 @@ def index(request):
             requet = DnsReclamation.objects.create(uri=uri, raison=raison)
             done = "Votre requete a ete enregistre avec succes"
         else:
-            err = "Le domaine doit etre .sn"
+            err = "Le domaine doit etre .sn ou l'addresse Ip n'est pas valide"
         form = DomaineForm()
     else:
         form = DomaineForm()
